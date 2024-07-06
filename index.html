@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <title>Memory Game</title>
 </head>
 
@@ -30,20 +34,68 @@
             </aside>
 
             <main class="game">
-                <div class="grid">
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                </div>
+                <div class="container">
+                    <section>
+                        <div class="row row-cols-4">
+                            <div class="col gy-3">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col gy-3">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col gy-3">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col gy-3">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                        </div> 
+                    </section>
+                    <section>
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="bg-light" style="height: 200px;">
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                  </div>
             </main>
 
             <aside class="stats">
@@ -56,9 +108,35 @@
         </div>
     </div>
 
+    <!-- This button is ready for JS. We just need to add the query selector to JS and then this should work-->
+    <div class="d-grid col-2 mx-auto">   <!-- This div part just impacts how the button is displayed on this page (sizing, alignment, etc.)-->
+       <button type="button" class="btn btn-primary click">Play</button> <!-- This creates the actual button, selects the color, and connects it to the event listener-->
+    </div>
+
     <footer>
         <p>Created by:</p>
     </footer>
+
+    <!--Modal Starter Code
+        We still need to include:
+        Modal Id
+        Modal Trigger (what triggers the modal to pop up)
+        Yes trigger (to restart game when yes is clicked)
+        It will be easier to finish once we create the event that will actual trigger the modal (aka game end)-->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Play Again?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>
 
