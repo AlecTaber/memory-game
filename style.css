@@ -75,3 +75,13 @@ footer {
     height: 100px;
     width: 75px;
 }
+
+.countdown-timer {
+    text-align: center;
+}
+
+#countdown {
+    font-size:50px;
+    background-color: black;
+    padding: 0px;
+}
