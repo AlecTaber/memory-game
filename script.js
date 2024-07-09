@@ -13,5 +13,30 @@ function countdown() {
         }
     }, 1000);
 }
+
+function placeCards() {
+    const Jack = {
+        name: "Jack",
+        image: "images/Jack.jpg",
+    }
+    const Queen = {
+        name: "Queen",
+        image: "images/Queen.jpg",
+    }
+    const King = {
+        name: "King",
+        image: "images/King.jpg",
+}
+    const cardsArray=[]
+
+    cardsArray.push(Jack);
+    cardsArray.push(Queen);
+    cardsArray.push(King);
+    
+    return cardsArray;
+}
+
+console.log(placeCards);
+
 const playButton = document.querySelector('.btn-primary.click');
 playButton.addEventListener('click', countdown);
