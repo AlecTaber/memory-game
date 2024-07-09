@@ -8,12 +8,6 @@ body {
     padding: 0;
 }
 
-.conatiner {
-    display: flex;
-    flex-direction: column;
-    align-items: center0;
-}
-
 header, footer {
     background-color: red;
     width: 100%;
@@ -58,7 +52,7 @@ footer {
     background-color: green;
     padding: 20px;
     width: 1250px;
-    height: 680px;
+    height: 500px;
 }
 
 
