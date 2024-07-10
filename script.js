@@ -1,13 +1,16 @@
 const timerEl = document.getElementById('countdown');
 const mainEl = document.getElementById('main');
 const cardsData = placeCards();
+const cards = document.querySelectorAll("#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12");
+const cardParentEl = document.querySelector(".cards");
+const isRevealed = [];
 
+let inPlay = false;
 let timeLeft = 5;
-let isRevealed = false;
+let gameScore = 0;
 
 function countdown() {
     const timeInterval = setInterval(function () {
-        placeCards();
         if (timeLeft > 0) {
             timerEl.textContent = timeLeft;
             timeLeft--;
@@ -16,7 +19,6 @@ function countdown() {
             timerEl.textContent = "Match!";
             clearInterval(timeInterval);
             showCards();
-            // We'll add more code here to handle what happens when the timer reaches 0
         }
 
     }, 1000);
@@ -45,18 +47,47 @@ function shuffle(array) {
 }
 
 function showCards() {
-    const cards = document.querySelectorAll("#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12");
-
+    inPlay = true;
     for (let i = 0; i < cards.length; i++) {
         if (timerEl.textContent != "Match!") {
-            isRevealed = true;
             cards[i].src = cardsData[i].image;
+            let cardType = cardsData[i].image.split("/")[1].split(".")[0];
+            console.log(cardType)
+            cards[i].setAttribute("data-card-type", cardType)
+            cards[i].setAttribute("data-front", cardsData[i].image)
+            cards[i].setAttribute("data-state", "visible")
         } else {
-            isRevealed = false;
             cards[i].src = 'images/card-back.jpg';
+            cards[i].setAttribute("data-state", "hidden")
         }
     }
-    // isRevealed = !isRevealed; // Flip the boolean value
+}
+
+function checkMatches () {
+    //iterate through array and compare values, and see if length = 4
+    //if length = 4, add point, dump array
+    //if they don't match execute reset game
+    
+}
+
+function resetGame () {
+    //reshuffle cards
+    //gameScore = 0
+    //timeLeft = 5
+    //timerElement.textcontent = 5
+    //call countdown
+}
+
+function flipping (e) {
+    if (!inPlay || e.target.getAttribute("data-state") === "visible") {
+        return;
+    } else {
+        console.log(e.target);
+        e.target.setAttribute("data-state", "visible")
+        e.target.setAttribute("src", e.target.getAttribute("data-front"))
+        isRevealed.push(e.target.getAttribute("data-card-type"))
+        checkMatches();
+    }
 }
 
 
@@ -65,3 +96,5 @@ console.log(showCards);
 
 const playButton = document.querySelector('.btn-primary.click');
 playButton.addEventListener('click', countdown);
+
+cardParentEl.addEventListener('click', flipping);
