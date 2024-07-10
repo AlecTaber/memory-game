@@ -44,12 +44,16 @@ function placeCards() {
 
 function showCards() {
     const cards = document.querySelectorAll("#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12");
-    
+
+    function getRandomNum() {
+        return Math.floor(Math.random *3);
+    }
 
     for (let i = 0; i < cards.length; i++) {
+        getRandomNum();
+
         if (timerEl.textContent != "Match!") {
             isRevealed = true;
-            cards[i].src = 'images/Jack.jpg';
         } else {
             isRevealed = false;
             cards[i].src = 'images/card-back.jpg';
