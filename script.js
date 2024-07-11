@@ -65,58 +65,39 @@ function showCards() {
 }
 
 function checkMatches() {
-    //iterate through array "isRevealed" and compare values, and see if length = 4
-    //if length = 4, add point, dump array
-    //if they don't match execute reset game
-    let allMatchCondition;
+    //iterate through array "isRevealed" and compare values, see if length = 4
+    //if length = 4, add point to currentMatches, dump array
+    //if they don't match, execute resetGame
     if (isRevealed.length === 4) {
-        // Check if all elements in isRevealed match a specific condition
-        allMatchCondition = true;
-    } else {
-        allMatchCondition = false;
-    }
+        const firstCardType = isRevealed[0];
+        const allMatch = isRevealed.every(cardType => cardType === firstCardType);
 
-    let firstElement = isRevealed[0];
-    let doMatch;
-    for (let i = 1; i < isRevealed.length; i++) {
-        if (isRevealed[i] === firstElement) {
-            doMatch = true;
-        } else if (isRevealed[i] !== firstElement) {
-            doMatch = false; // Elements do not match
+        if (allMatch) {
+            currentMatches++;
+            console.log(currentMatches);
+            //statCurrent.textContent = `Current Matches: ${currentMatches}`;
+            //isRevealed = [];
+        } else {
+            resetGame();
         }
     }
 
-    if (allMatchCondition && doMatch) {
-        statCurrent.textContent = currentMatches++;
-    }
-    else if (!doMatch) {
-        resetGame();
-    }
-    else if (!allMatchCondition) {
-        return;
-    }
 }
 
 function resetGame() {
     //reshuffle cards
-    //gameScore = 0
+    //currentMatches = 0
     //timeLeft = 5
     //timerElement.textcontent = 5
-    //if they want to play again, call count down. If not, return (will this allow them to click the play button to play again?)
-    //just trying to think what we will do if they don't want to play again. Just leave the page as is?
-    function resetGame() {
-        cardsData = placeCards();
-        currentMatches = 0;
-        timeLeft = 5;
-        timerEl.textContent = 5;
-
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].src = 'images/card-back.jpg';
-            cards[i].setAttribute("data-state", "hidden");
-        }
-        isRevealed.length = 0;
-        countdown();
-    }
+    cards.forEach(card => {
+        card.src = 'images/card-back.jpg';
+        card.setAttribute("data-state", "hidden");
+    });
+    placeCards();
+    timeLeft = 5;
+    timerEl.textContent = timeLeft;
+    //currentMatches = 0;
+    //statCurrent.textContent = `Current Matches: ${currentMatches}`;
 }
 
 function flipping(e) {
