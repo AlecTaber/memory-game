@@ -1,11 +1,13 @@
 const timerEl = document.getElementById('countdown');
 const mainEl = document.getElementById('main');
-const cardsData = placeCards();
 const cards = document.querySelectorAll("#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12");
 const cardParentEl = document.querySelector(".cards");
 const isRevealed = [];
-const statCurrent = document.getElementById('current');
+const statCurrent = document.querySelector(".stats .current");
+const youWinModal = document.getElementById("you-win");
+const yesButton = document.querySelector('.modal-footer .btn-primary');
 
+let cardsData = placeCards();
 let inPlay = false;
 let timeLeft = 5;
 let currentMatches = 0;
@@ -68,6 +70,19 @@ function checkMatches() {
     //iterate through array "isRevealed" and compare values, see if length = 4
     //if length = 4, add point to currentMatches, dump array
     //if they don't match, execute resetGame
+    
+    //This code checks matches as cards are clicked
+    if (isRevealed.length >= 2) {
+        const lastCard = isRevealed[isRevealed.length - 1];
+        const secondLastCard = isRevealed[isRevealed.length - 2];
+        if (lastCard !== secondLastCard) {
+          console.log("Mismatch - Calling resetGame()");
+          resetGame();
+          return; // Exit the function after resetGame
+        }
+      }
+
+    //This code checks for completed sets of matches
     if (isRevealed.length === 4) {
         const firstCardType = isRevealed[0];
         const allMatch = isRevealed.every(cardType => cardType === firstCardType);
@@ -75,10 +90,16 @@ function checkMatches() {
         if (allMatch) {
             currentMatches++;
             console.log(currentMatches);
-            //statCurrent.textContent = `Current Matches: ${currentMatches}`;
-            //isRevealed = [];
-        } else {
-            resetGame();
+            console.log("Set Matched!");
+            isRevealed.length = 0; // Clear revealed types after a match
+            statCurrent.textContent = `Current Matches: ${currentMatches}`;
+            // Show the modal using Bootstrap
+            youWinModal.classList.add('show');
+            //event listener for yes button on modal
+            yesButton.addEventListener('click', () => {
+                // Reset the game when Yes button is clicked
+                resetGame();
+              });
         }
     }
 
@@ -93,11 +114,12 @@ function resetGame() {
         card.src = 'images/card-back.jpg';
         card.setAttribute("data-state", "hidden");
     });
-    placeCards();
+    isRevealed.length = 0;
+    cardsData = placeCards();
     timeLeft = 5;
     timerEl.textContent = timeLeft;
-    //currentMatches = 0;
-    //statCurrent.textContent = `Current Matches: ${currentMatches}`;
+    currentMatches = 0;
+    statCurrent.textContent = `Current Matches: ${currentMatches}`;
 }
 
 function flipping(e) {
