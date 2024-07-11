@@ -7,7 +7,7 @@ const isRevealed = [];
 
 let inPlay = false;
 let timeLeft = 5;
-let gameScore = 0;
+let currentMatches = 0;
 
 function countdown() {
     const timeInterval = setInterval(function () {
@@ -64,10 +64,20 @@ function showCards() {
 }
 
 function checkMatches () {
-    //iterate through array and compare values, and see if length = 4
+    //iterate through array "isRevealed" and compare values, and see if length = 4
     //if length = 4, add point, dump array
     //if they don't match execute reset game
-    
+    for (let i = 0; i < isRevealed.length; i++) {
+       if (i === isRevealed[0] && isRevealed.length === 4) { //idk what to do here with the data-card type to get them to compare
+            currentMatches++;
+            isRevealed = [];
+        } else if (i === isRevealed[0] && isRevealed.length <4) {
+            return;
+        } else if (i != isRevealed[0]) {
+            resetGame();
+            console.log("It's working")
+         }
+    }
 }
 
 function resetGame () {
@@ -75,7 +85,8 @@ function resetGame () {
     //gameScore = 0
     //timeLeft = 5
     //timerElement.textcontent = 5
-    //call countdown
+    //if they want to play again, call count down. If not, return (will this allow them to click the play button to play again?)
+    //just trying to think what we will do if they don't want to play again. Just leave the page as is?
 }
 
 function flipping (e) {
