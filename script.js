@@ -7,11 +7,23 @@ const statCurrent = document.querySelector(".stats .current");
 const youWinModal = document.getElementById("you-win");
 const yesButton = document.querySelector('.modal-footer .btn-primary');
 const modalMessage = document.getElementById('modalMessage');
+const statWins = document.querySelector(".stats .wins");  // could make an if statement that tracks when the player wins and adds a point to wins but else adds a point to loses.
+const statStreak = document.querySelector(".stats .longestStreak");
+const statCurrentStreak = document.querySelector(".stats .currentStreak");
+const statTotalMatches = document.querySelector(".stats .total");
+const statPercentage = document.querySelector(".stats .percentage");
+const statLosses = document.querySelector(".stats .loss");
 
 let cardsData = placeCards();
 let inPlay = false;
 let timeLeft = 5;
 let currentMatches = 0;
+let winCounter = 0;
+let lossCounter = 0;
+let totalMatches = 0;
+let winStreak = 0;
+let highestWinStreak = 0;
+let currentStreak  = 0;
 
 function countdown() {
     const timeInterval = setInterval(function () {
@@ -79,6 +91,13 @@ function checkMatches() {
         if (lastCard !== secondLastCard) {
           console.log("Mismatch - Calling resetGame()");
           resetGame();
+          lossCounter++;
+          winStreak = 0;
+          currentStreak = 0;
+          statLosses.textContent = `Losses: ${lossCounter}`;
+          statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
+          winPercentage();
+          calcWinStreak();
           return; // Exit the function after resetGame
         }
       }
@@ -90,15 +109,23 @@ function checkMatches() {
 
         if (allMatch) {
             currentMatches++;
+            totalMatches++;
             console.log(currentMatches);
             console.log("Set Matched!");
             isRevealed.length = 0; // Clear revealed types after a match
             statCurrent.textContent = `Current Matches: ${currentMatches}`;
+            statTotalMatches.textContent = `Total Matches: ${totalMatches}`;
             if (currentMatches === 3) { // Assuming 3 matches complete the game
                 $('#youWinModal').modal('show');
+                winCounter++;
+                winStreak++;
+                currentStreak++;
+                statWins.textContent = `Wins: ${winCounter}`;
+                statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
+                winPercentage();
+                calcWinStreak();
         }
     }
-
 }}
 
 function resetGame() {
@@ -130,6 +157,22 @@ function flipping(e) {
     }
 }
 
+function winPercentage() {
+    const totalGames = winCounter + lossCounter;
+    if (totalGames === 0) {
+        return 0;
+    } 
+    const calculateWinPercentage = (winCounter/totalGames) * 100;
+    statPercentage.textContent = `Win Percentage: ${calculateWinPercentage.toFixed(2)}`;
+    return calculateWinPercentage.toFixed(2);
+}
+
+function calcWinStreak() {
+    if (winStreak > highestWinStreak) {
+        highestWinStreak = winStreak;
+    }
+    statStreak.textContent = `Streak: ${highestWinStreak}`;
+}
 
 console.log(placeCards);
 console.log(showCards);
