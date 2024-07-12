@@ -93,17 +93,12 @@ function checkMatches() {
             console.log("Set Matched!");
             isRevealed.length = 0; // Clear revealed types after a match
             statCurrent.textContent = `Current Matches: ${currentMatches}`;
-            // Show the modal using Bootstrap
-            youWinModal.classList.add('show');
-            //event listener for yes button on modal
-            yesButton.addEventListener('click', () => {
-                // Reset the game when Yes button is clicked
-                resetGame();
-              });
+            if (currentMatches === 3) { // Assuming 3 matches complete the game
+                $('#youWinModal').modal('show');
         }
     }
 
-}
+}}
 
 function resetGame() {
     //reshuffle cards
@@ -142,3 +137,9 @@ const playButton = document.querySelector('.btn-primary.click');
 playButton.addEventListener('click', countdown);
 
 cardParentEl.addEventListener('click', flipping);
+
+// Event listener for the "Play Again" button in the modal
+playAgainButton.addEventListener('click', () => {
+    resetGame();
+    $('#youWinModal').modal('hide');
+});
