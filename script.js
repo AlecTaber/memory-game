@@ -6,6 +6,7 @@ const isRevealed = [];
 const statCurrent = document.querySelector(".stats .current");
 const youWinModal = document.getElementById("you-win");
 const yesButton = document.querySelector('.modal-footer .btn-primary');
+const modalMessage = document.getElementById('modalMessage');
 
 let cardsData = placeCards();
 let inPlay = false;

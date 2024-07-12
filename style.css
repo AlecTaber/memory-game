@@ -77,3 +77,8 @@ footer {
     background-color: black;
     padding: 0px;
 }
+
+.modal-body, .modal-title {
+    color: black;
+    background-color: rgb(255, 255, 255);
+}
