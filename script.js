@@ -95,7 +95,9 @@ function checkMatches() {
           winStreak = 0;
           currentStreak = 0;
           statLosses.textContent = `Losses: ${lossCounter}`;
+          localStorage.setItem('lossCounter', lossCounter);
           statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
+          localStorage.setItem('currentStreak', currentStreak);
           winPercentage();
           calcWinStreak();
           return; // Exit the function after resetGame
@@ -114,14 +116,18 @@ function checkMatches() {
             console.log("Set Matched!");
             isRevealed.length = 0; // Clear revealed types after a match
             statCurrent.textContent = `Current Matches: ${currentMatches}`;
+            localStorage.setItem('currentMatches', currentMatches);
             statTotalMatches.textContent = `Total Matches: ${totalMatches}`;
+            localStorage.setItem('totalMatches', totalMatches);
             if (currentMatches === 3) { // Assuming 3 matches complete the game
                 $('#youWinModal').modal('show');
                 winCounter++;
                 winStreak++;
                 currentStreak++;
                 statWins.textContent = `Wins: ${winCounter}`;
+                localStorage.setItem('winCounter', winCounter);
                 statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
+                localStorage.setItem('currentStreak', currentStreak);
                 winPercentage();
                 calcWinStreak();
         }
@@ -143,6 +149,7 @@ function resetGame() {
     timerEl.textContent = timeLeft;
     currentMatches = 0;
     statCurrent.textContent = `Current Matches: ${currentMatches}`;
+    localStorage.setItem('currentMatches', currentMatches);
 }
 
 function flipping(e) {
@@ -164,6 +171,7 @@ function winPercentage() {
     } 
     const calculateWinPercentage = (winCounter/totalGames) * 100;
     statPercentage.textContent = `Win Percentage: ${calculateWinPercentage.toFixed(2)}`;
+    localStorage.setItem('calculateWinPercentage', calculateWinPercentage.toFixed(2));
     return calculateWinPercentage.toFixed(2);
 }
 
@@ -172,6 +180,19 @@ function calcWinStreak() {
         highestWinStreak = winStreak;
     }
     statStreak.textContent = `Streak: ${highestWinStreak}`;
+    localStorage.setItem('highestWinStreak', highestWinStreak);
+    
+}
+
+window.onload = function() {
+    document.getElementById('winCounter').textContent = `Wins: ${winCounter}`;
+    document.getElementById('lossCounter').textContent = `Losses: ${lossCounter}`;
+    document.getElementById('highestWinStreak').textContent = `Streak: ${highestWinStreak}`;
+    document.getElementById('currentMatches').textContent = `Current Matches: ${currentMatches}`;
+    document.getElementById('currentStreak').textContent = `Current Streak: ${currentStreak}`;
+    document.getElementById('calculateWinPercentage').textContent = `Win Percentage: ${calculateWinPercentage.toFixed(2)}`;
+    document.getElementById('totalMatches').textContent = `Total Matches: ${totalMatches}`;
+
 }
 
 console.log(placeCards);
