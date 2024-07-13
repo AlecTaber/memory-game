@@ -53,6 +53,7 @@ footer {
     padding: 20px;
     width: 900px;
     height: 500px;
+    flex-direction: column;
 }
 
 
@@ -81,4 +82,50 @@ footer {
 .modal-body, .modal-title {
     color: black;
     background-color: rgb(255, 255, 255);
+}
+
+
+/* Media query for tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .instructions, .stats {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .game {
+        width: 90%;
+    }
+}
+
+/* Media query for small screens (max-width: 600px) */
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card img {
+        height: 100px;
+        width: 75px;
+    }
+
+    .instructions, .stats {
+        width: 100%;
+    }
+
+    .game {
+        width: 100%;
+    }
+
+    header h1, footer p {
+        font-size: 1.2em;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
 }
