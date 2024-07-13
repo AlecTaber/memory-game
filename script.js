@@ -4,10 +4,8 @@ const cards = document.querySelectorAll("#card1, #card2, #card3, #card4, #card5,
 const cardParentEl = document.querySelector(".cards");
 const isRevealed = [];
 const statCurrent = document.querySelector(".stats .current");
-const youWinModal = document.getElementById("you-win");
+const youWinModal = document.getElementById("youWinModal");
 const youLoseModal = document.getElementById('youLoseModal');
-//const yesButton = document.querySelector('#youWinModal .modal-footer .btn-primary');
-//const modalMessage = document.getElementById('modalMessage');
 const statWins = document.querySelector(".stats .wins");
 const statStreak = document.querySelector(".stats .longestStreak");
 const statCurrentStreak = document.querySelector(".stats .currentStreak");
@@ -69,13 +67,13 @@ function showCards() {
         if (timerEl.textContent != "Match!") {
             cards[i].src = cardsData[i].image;
             let cardType = cardsData[i].image.split("/")[1].split(".")[0];
-            console.log(cardType)
-            cards[i].setAttribute("data-card-type", cardType)
-            cards[i].setAttribute("data-front", cardsData[i].image)
-            cards[i].setAttribute("data-state", "visible")
+            console.log(cardType);
+            cards[i].setAttribute("data-card-type", cardType);
+            cards[i].setAttribute("data-front", cardsData[i].image);
+            cards[i].setAttribute("data-state", "visible");
         } else {
             cards[i].src = 'images/card-back.jpg';
-            cards[i].setAttribute("data-state", "hidden")
+            cards[i].setAttribute("data-state", "hidden");
         }
     }
 }
@@ -85,19 +83,19 @@ function checkMatches() {
         const lastCard = isRevealed[isRevealed.length - 1];
         const secondLastCard = isRevealed[isRevealed.length - 2];
         if (lastCard !== secondLastCard) {
-          console.log("Mismatch - Calling You Lose Modal");
-          $('#youLoseModal').modal('show');
-          lossCounter++;
-          winStreak = 0;
-          currentStreak = 0;
-          statLosses.textContent = `Losses: ${lossCounter}`;
-          statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
-          winPercentage();
-          calcWinStreak();
-          updateStats();
-          return;
+            console.log("Mismatch - Calling You Lose Modal");
+            $('#youLoseModal').modal('show');
+            lossCounter++;
+            winStreak = 0;
+            currentStreak = 0;
+            statLosses.textContent = `Losses: ${lossCounter}`;
+            statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
+            winPercentage();
+            calcWinStreak();
+            updateStats();
+            return;
         }
-      }
+    }
 
     if (isRevealed.length === 4) {
         const firstCardType = isRevealed[0];
@@ -120,10 +118,11 @@ function checkMatches() {
                 statCurrentStreak.textContent = `Current Streak: ${currentStreak}`;
                 winPercentage();
                 calcWinStreak();
+            }
+            updateStats();
         }
-        updateStats();
     }
-}}
+}
 
 function resetGame() {
     cards.forEach(card => {
@@ -144,9 +143,9 @@ function flipping(e) {
         return;
     } else {
         console.log(e.target);
-        e.target.setAttribute("data-state", "visible")
-        e.target.setAttribute("src", e.target.getAttribute("data-front"))
-        isRevealed.push(e.target.getAttribute("data-card-type"))
+        e.target.setAttribute("data-state", "visible");
+        e.target.setAttribute("src", e.target.getAttribute("data-front"));
+        isRevealed.push(e.target.getAttribute("data-card-type"));
         checkMatches();
     }
 }
@@ -156,7 +155,7 @@ function winPercentage() {
     if (totalGames === 0) {
         return 0;
     } 
-    const calculateWinPercentage = (winCounter/totalGames) * 100;
+    const calculateWinPercentage = (winCounter / totalGames) * 100;
     statPercentage.textContent = `Win Percentage: ${calculateWinPercentage.toFixed(2)}`;
     return calculateWinPercentage.toFixed(2);
 }
@@ -169,10 +168,6 @@ function calcWinStreak() {
     updateStats();
 }
 
-
-console.log(placeCards);
-console.log(showCards);
-
 const playButton = document.querySelector('.btn-primary.click');
 playButton.addEventListener('click', countdown);
 
@@ -183,7 +178,7 @@ document.querySelector('#playAgainButtonWin').addEventListener('click', () => {
     $('#youWinModal').modal('hide');
 });
 
-//close you win modal when user clicks "No"
+// Close you win modal when user clicks "No"
 $('#youWinModal .btn-secondary').on('click', function() {
     $('#youWinModal').modal('hide');
 });
@@ -193,7 +188,7 @@ document.querySelector('#playAgainButtonLose').addEventListener('click', () => {
     $('#youLoseModal').modal('hide');
 });
 
-//close you lose modal when user clicks "No"
+// Close you lose modal when user clicks "No"
 $('#youLoseModal .btn-secondary').on('click', function() {
     $('#youLoseModal').modal('hide');
 });
@@ -223,3 +218,8 @@ function loadStats() {
 }
 
 document.addEventListener('DOMContentLoaded', loadStats);
+
+// Easter Egg
+document.getElementById('alec-taber').addEventListener('click', function() {
+    alert("Alec Taber has been fired from our group and is not allowed any real revenue from this game especially when we make billions.");
+});
