@@ -5,8 +5,9 @@ const cardParentEl = document.querySelector(".cards");
 const isRevealed = [];
 const statCurrent = document.querySelector(".stats .current");
 const youWinModal = document.getElementById("you-win");
-const yesButton = document.querySelector('.modal-footer .btn-primary');
-const modalMessage = document.getElementById('modalMessage');
+const youLoseModal = document.getElementById('youLoseModal');
+//const yesButton = document.querySelector('#youWinModal .modal-footer .btn-primary');
+//const modalMessage = document.getElementById('modalMessage');
 const statWins = document.querySelector(".stats .wins");
 const statStreak = document.querySelector(".stats .longestStreak");
 const statCurrentStreak = document.querySelector(".stats .currentStreak");
@@ -84,8 +85,8 @@ function checkMatches() {
         const lastCard = isRevealed[isRevealed.length - 1];
         const secondLastCard = isRevealed[isRevealed.length - 2];
         if (lastCard !== secondLastCard) {
-          console.log("Mismatch - Calling resetGame()");
-          resetGame();
+          console.log("Mismatch - Calling You Lose Modal");
+          $('#youLoseModal').modal('show');
           lossCounter++;
           winStreak = 0;
           currentStreak = 0;
@@ -177,9 +178,24 @@ playButton.addEventListener('click', countdown);
 
 cardParentEl.addEventListener('click', flipping);
 
-playAgainButton.addEventListener('click', () => {
+document.querySelector('#playAgainButtonWin').addEventListener('click', () => {
     resetGame();
     $('#youWinModal').modal('hide');
+});
+
+//close you win modal when user clicks "No"
+$('#youWinModal .btn-secondary').on('click', function() {
+    $('#youWinModal').modal('hide');
+});
+
+document.querySelector('#playAgainButtonLose').addEventListener('click', () => {
+    resetGame();
+    $('#youLoseModal').modal('hide');
+});
+
+//close you lose modal when user clicks "No"
+$('#youLoseModal .btn-secondary').on('click', function() {
+    $('#youLoseModal').modal('hide');
 });
 
 function updateStats() {

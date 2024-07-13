@@ -45,19 +45,19 @@
                         <div class="row row-cols-4 gx-5">
                             <div class="col gy-1">
                                 <img id="card1" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card2" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card3" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card4" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                         </div>
                     </section>
@@ -65,19 +65,19 @@
                         <div class="row row-cols-4 gx-5">
                             <div class="col gy-1">
                                 <img id="card5" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card6" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card7" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card8" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                         </div>
                     </section>
@@ -85,19 +85,19 @@
                         <div class="row row-cols-4 gx-5">
                             <div class="col gy-1">
                                 <img id="card9" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card10" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card11" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                             <div class="col gy-1">
                                 <img id="card12" data-back="images/card-back.jpg" src="images/card-back.jpg"
-                                    style="height: 150px; width: 110px;">
+                                    style="height: 150px; width: 110px;" class="img-fluid">
                             </div>
                         </div>
                     </section>
@@ -130,6 +130,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="youWinModalLabel">You Win!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -138,14 +139,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary" id="playAgainButton">Yes</button>
+                    <button type="button" class="btn btn-primary" id="playAgainButtonWin">Yes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="modal fade" id="youLoseModal" tabindex="-1" aria-labelledby="youLoseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="youLoseModalLabel">You're a LOSER!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              That is not a billionaire mindset. Want to play again?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" id="playAgainButtonLose">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha384-GnZJ4xV2MQj2HCUXrpP4Rleok/WZF+OWZurjFwAFp7LEwKC5lKxR0a9k70jZo/3K" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 
 </body>
