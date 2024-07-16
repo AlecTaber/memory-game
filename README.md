@@ -92,11 +92,11 @@ https://alectaber.github.io/memory-game/
 **Joseph Norris**
 
 [Link to Git Hub for Alec Taber](https://github.com/AlecTaber)
-[Link to Git Hub for Ashlin Lee]()
+[Link to Git Hub for Ashlin Lee](https://github.com/ashlinlee98)
 [Link to Git Hub for Joseph Norris](https://github.com/yoseph1618)
 
 [Link to LinkedIn for Alec Taber](https://www.linkedin.com/in/alec-taber-11b963311)
-[Link to LinkedIn for Ashlin Lee]()
+[Link to LinkedIn for Ashlin Lee](https://www.linkedin.com/in/ashlinlee/)
 [Link to LinkedIn for Joseph Norris](www.linkedin.com/in/joseph-norris-a9a491229)
 
 
